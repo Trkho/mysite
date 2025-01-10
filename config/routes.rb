@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  
+  resource :unsubscribe, only: [ :show ]
   resources :users, only: [:new, :create]
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   resource :session
   resources :passwords, param: :token
-  resources :products
+  resources :products do
+    resources :subscribers, only: [ :create ]
+  end
   root "products#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -18,4 +22,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+ 
+  
+ 
 end
