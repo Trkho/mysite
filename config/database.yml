@@ -89,7 +89,7 @@ production:
     password: <%= ENV["MYSITE_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: mysite_production_cache
+    database: <%= ENV['CACHE_DATABASE'] %>
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
